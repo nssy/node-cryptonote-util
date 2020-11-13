@@ -85,7 +85,8 @@ NAN_METHOD(convert_blob) {
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
-    Local<Object> target = info[0]->ToObject();
+    v8::Isolate *isolate = v8::Isolate::GetCurrent();
+    Local<Object> target = info[0]->ToObject(isolate->GetCurrentContext()).ToLocalChecked();
 
     if (!Buffer::HasInstance(target))
         return THROW_ERROR_EXCEPTION("Argument should be a buffer object.");
@@ -112,7 +113,8 @@ NAN_METHOD(convert_blob_fa) {
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
-    Local<Object> target = info[0]->ToObject();
+    v8::Isolate *isolate = v8::Isolate::GetCurrent();
+    Local<Object> target = info[0]->ToObject(isolate->GetCurrentContext()).ToLocalChecked();
 
     if (!Buffer::HasInstance(target))
         return THROW_ERROR_EXCEPTION("Argument should be a buffer object.");
@@ -133,11 +135,6 @@ NAN_METHOD(convert_blob_fa) {
         if (!get_block_hashing_blob(parent_block, output))
             return THROW_ERROR_EXCEPTION("Failed to create mining block");
     }
-//    Local<Object> v8::Local<v8::Value> returnValue =  Nan::NewBuffer(output.length()).ToLocalChecked();
-//    memcpy(Buffer::Data(returnValue), output.c_str(), output.length());
-//    info.GetReturnValue().Set(
-//        returnValue
-//    );
 
     v8::Local<v8::Value> returnValue = Nan::CopyBuffer((char*)output.data(), output.size()).ToLocalChecked();
     info.GetReturnValue().Set(
@@ -150,7 +147,8 @@ void get_block_id(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
-    Local<Object> target = info[0]->ToObject();
+    v8::Isolate *isolate = v8::Isolate::GetCurrent();
+    Local<Object> target = info[0]->ToObject(isolate->GetCurrentContext()).ToLocalChecked();
 
     if (!Buffer::HasInstance(target))
         return THROW_ERROR_EXCEPTION("Argument should be a buffer object.");
@@ -178,8 +176,9 @@ void construct_block_blob(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 2)
         return THROW_ERROR_EXCEPTION("You must provide two arguments.");
 
-    Local<Object> block_template_buf = info[0]->ToObject();
-    Local<Object> nonce_buf = info[1]->ToObject();
+    v8::Isolate *isolate = v8::Isolate::GetCurrent();
+    Local<Object> block_template_buf = info[0]->ToObject(isolate->GetCurrentContext()).ToLocalChecked();
+    Local<Object> nonce_buf = info[1]->ToObject(isolate->GetCurrentContext()).ToLocalChecked();
 
     if (!Buffer::HasInstance(block_template_buf) || !Buffer::HasInstance(nonce_buf))
         return THROW_ERROR_EXCEPTION("Both arguments should be buffer objects.");
@@ -210,8 +209,9 @@ void construct_block_blob_fa(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 2)
         return THROW_ERROR_EXCEPTION("You must provide two arguments.");
 
-    Local<Object> block_template_buf = info[0]->ToObject();
-    Local<Object> nonce_buf = info[1]->ToObject();
+    v8::Isolate *isolate = v8::Isolate::GetCurrent();
+    Local<Object> block_template_buf = info[0]->ToObject(isolate->GetCurrentContext()).ToLocalChecked();
+    Local<Object> nonce_buf = info[1]->ToObject(isolate->GetCurrentContext()).ToLocalChecked();
 
     if (!Buffer::HasInstance(block_template_buf) || !Buffer::HasInstance(nonce_buf))
         return THROW_ERROR_EXCEPTION("Both arguments should be buffer objects.");
@@ -253,7 +253,8 @@ void convert_blob_bb(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
-    Local<Object> target = info[0]->ToObject();
+    v8::Isolate *isolate = v8::Isolate::GetCurrent();
+    Local<Object> target = info[0]->ToObject(isolate->GetCurrentContext()).ToLocalChecked();
 
     if (!Buffer::HasInstance(target))
         return THROW_ERROR_EXCEPTION("Argument should be a buffer object.");
@@ -279,7 +280,8 @@ void address_decode(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
-    Local<Object> target = info[0]->ToObject();
+    v8::Isolate *isolate = v8::Isolate::GetCurrent();
+    Local<Object> target = info[0]->ToObject(isolate->GetCurrentContext()).ToLocalChecked();
 
     if (!Buffer::HasInstance(target))
         return THROW_ERROR_EXCEPTION("Argument should be a buffer object.");
@@ -323,7 +325,8 @@ void address_decode_integrated(const Nan::FunctionCallbackInfo<v8::Value>& info)
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
-    Local<Object> target = info[0]->ToObject();
+    v8::Isolate *isolate = v8::Isolate::GetCurrent();
+    Local<Object> target = info[0]->ToObject(isolate->GetCurrentContext()).ToLocalChecked();
 
     if (!Buffer::HasInstance(target))
         return THROW_ERROR_EXCEPTION("Argument should be a buffer object.");
