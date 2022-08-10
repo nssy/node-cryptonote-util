@@ -68,6 +68,19 @@ namespace cryptonote
     crypto::public_key key;
   };
 
+  struct txout_to_tagged_key
+  {
+    txout_to_tagged_key() { }
+    txout_to_tagged_key(const crypto::public_key &_key, const crypto::view_tag &_view_tag) : key(_key), view_tag(_view_tag) { }
+    crypto::public_key key;
+    crypto::view_tag view_tag; // optimization to reduce scanning time
+
+    BEGIN_SERIALIZE_OBJECT()
+      FIELD(key)
+      FIELD(view_tag)
+    END_SERIALIZE()
+  };
+
   #pragma pack(push, 1)
   struct bb_txout_to_key
   {
@@ -134,8 +147,10 @@ namespace cryptonote
 
   typedef boost::variant<txin_gen, txin_to_script, txin_to_scripthash, txin_to_key> txin_v;
 
-  typedef boost::variant<txout_to_script, txout_to_scripthash, txout_to_key> txout_target_v;
+  typedef boost::variant<txout_to_script, txout_to_scripthash, txout_to_key, txout_to_tagged_key> txout_target_v;
   typedef boost::variant<txout_to_script, txout_to_scripthash, bb_txout_to_key> bb_txout_target_v;
+
+
 
   //typedef std::pair<uint64_t, txout> out_t;
   struct tx_out
@@ -603,6 +618,7 @@ VARIANT_TAG(binary_archive, cryptonote::txout_to_script, 0x0);
 VARIANT_TAG(binary_archive, cryptonote::txout_to_scripthash, 0x1);
 VARIANT_TAG(binary_archive, cryptonote::txout_to_key, 0x2);
 VARIANT_TAG(binary_archive, cryptonote::bb_txout_to_key, 0x2);
+VARIANT_TAG(binary_archive, cryptonote::txout_to_tagged_key, 0x3);
 VARIANT_TAG(binary_archive, cryptonote::transaction, 0xcc);
 VARIANT_TAG(binary_archive, cryptonote::block, 0xbb);
 
@@ -614,6 +630,7 @@ VARIANT_TAG(json_archive, cryptonote::txout_to_script, "script");
 VARIANT_TAG(json_archive, cryptonote::txout_to_scripthash, "scripthash");
 VARIANT_TAG(json_archive, cryptonote::txout_to_key, "key");
 VARIANT_TAG(json_archive, cryptonote::bb_txout_to_key, "key");
+VARIANT_TAG(json_archive, cryptonote::txout_to_tagged_key, "key");
 VARIANT_TAG(json_archive, cryptonote::transaction, "tx");
 VARIANT_TAG(json_archive, cryptonote::block, "block");
 
@@ -625,5 +642,6 @@ VARIANT_TAG(debug_archive, cryptonote::txout_to_script, "script");
 VARIANT_TAG(debug_archive, cryptonote::txout_to_scripthash, "scripthash");
 VARIANT_TAG(debug_archive, cryptonote::txout_to_key, "key");
 VARIANT_TAG(debug_archive, cryptonote::bb_txout_to_key, "key");
+VARIANT_TAG(debug_archive, cryptonote::txout_to_tagged_key, "key");
 VARIANT_TAG(debug_archive, cryptonote::transaction, "tx");
 VARIANT_TAG(debug_archive, cryptonote::block, "block");
