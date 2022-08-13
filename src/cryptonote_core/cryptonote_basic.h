@@ -630,7 +630,7 @@ VARIANT_TAG(json_archive, cryptonote::txout_to_script, "script");
 VARIANT_TAG(json_archive, cryptonote::txout_to_scripthash, "scripthash");
 VARIANT_TAG(json_archive, cryptonote::txout_to_key, "key");
 VARIANT_TAG(json_archive, cryptonote::bb_txout_to_key, "key");
-VARIANT_TAG(json_archive, cryptonote::txout_to_tagged_key, "key");
+VARIANT_TAG(json_archive, cryptonote::txout_to_tagged_key, "tagged_key");
 VARIANT_TAG(json_archive, cryptonote::transaction, "tx");
 VARIANT_TAG(json_archive, cryptonote::block, "block");
 
@@ -642,6 +642,6 @@ VARIANT_TAG(debug_archive, cryptonote::txout_to_script, "script");
 VARIANT_TAG(debug_archive, cryptonote::txout_to_scripthash, "scripthash");
 VARIANT_TAG(debug_archive, cryptonote::txout_to_key, "key");
 VARIANT_TAG(debug_archive, cryptonote::bb_txout_to_key, "key");
-VARIANT_TAG(debug_archive, cryptonote::txout_to_tagged_key, "key");
+VARIANT_TAG(debug_archive, cryptonote::txout_to_tagged_key, "tagged_key");
 VARIANT_TAG(debug_archive, cryptonote::transaction, "tx");
 VARIANT_TAG(debug_archive, cryptonote::block, "block");

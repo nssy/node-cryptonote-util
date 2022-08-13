@@ -932,9 +932,4 @@ namespace cryptonote
 
     return true;
   }
-  //---------------------------------------------------------------
-  bool check_proof_of_work(const block& bl, difficulty_type current_diffic, crypto::hash& proof_of_work)
-  {
-  }
-  //---------------------------------------------------------------
 }
