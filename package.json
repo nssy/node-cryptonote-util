@@ -1,7 +1,6 @@
 {
   "name": "cryptonote-util",
-  "version": "0.0.4",
-  "main": "cryptonote",
+  "version": "0.0.5",
   "author": {
     "name": "LucasJones",
     "email": "lucasjonesdev@hotmail.co.uk"
@@ -16,6 +15,7 @@
   },
   "keywords": [
     "cryptonight",
-    "cryptonote"
+    "cryptonote",
+    "monero"
   ]
 }
