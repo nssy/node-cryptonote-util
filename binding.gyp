@@ -24,11 +24,11 @@
                     "-lboost_date_time",
                 ]
             },
-            "cflags_cc!": [ "-fno-exceptions", "-fno-rtti" ],
+            "cflags_c":  [
+                "-fno-exceptions -std=gnu11 -march=native -fPIC -DNDEBUG -Ofast -funroll-loops -fvariable-expansion-in-unroller -ftree-loop-if-convert-stores -fmerge-all-constants -fbranch-target-load-optimize2"
+            ],
             "cflags_cc": [
-                  "-std=c++0x",
-                  "-fexceptions",
-                  "-frtti",
+                  "-std=c++17 -fexceptions -frtti -march=native -fPIC -DNDEBUG -Ofast -s -funroll-loops -fvariable-expansion-in-unroller -ftree-loop-if-convert-stores -fmerge-all-constants -fbranch-target-load-optimize2"
             ],
             "xcode_settings": {
               "OTHER_CFLAGS": ["-fexceptions", "-frtti"]
